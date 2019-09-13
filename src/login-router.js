@@ -20,13 +20,13 @@ loginRouter
     AuthService.getUserWithUserName(req.app.get('db'), loginUser.user_name)
       .then(user => {
         if (!user) {
-          return res.status(400).json({ error: 'Incorrect user_name or password'});
+          return res.status(400).json({ error: 'Incorrect user name or password'});
         }
 
         return AuthService.comparePasswords(password, user.password)
           .then(passwordsMatch => {
             if(!passwordsMatch) {
-              return res.status(400).json({ error: 'Incorrect user_name or password'});
+              return res.status(400).json({ error: 'Incorrect user name or password'});
             }
             const sub = user.user_name;
             const payload = { user_id: user.id};
