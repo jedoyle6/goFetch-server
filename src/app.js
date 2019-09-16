@@ -10,7 +10,7 @@ const leaderboardRouter = require('./leaderboard-router');
 const gamelogRouter = require('./gamelog-router');
 const loginRouter = require('./login-router');
 const signupRouter = require('./signup-router');
-
+const profileRouter = require('./profile-router');
 
 const app = express();
 
@@ -24,6 +24,7 @@ app.use('/leaderboard', leaderboardRouter);
 app.use('/gamelog', gamelogRouter);
 app.use('/login', loginRouter);
 app.use('/signup', signupRouter);
+app.use('/profile', profileRouter);
 
 app.use(function errorHandler(error, req, res, next) {
   let response;

@@ -1,6 +1,7 @@
 'use strict';
 const express = require('express');
 const GamelogService = require('./gamelog-service');
+const authenticateTokenJwt = require('./authenticateTokenJwt');
 const xss = require('xss');
 
 const gamelogRouter = express.Router();
@@ -8,10 +9,10 @@ const jsonBodyParser = express.json();
 
 gamelogRouter
   .route('/')
-  .post(jsonBodyParser, (req, res, next) => {
+  .post(authenticateTokenJwt, jsonBodyParser, (req, res, next) => {
 
-    const { player_id, points } = req.body;
-    const newLog = { player_id: xss(player_id), points: xss(points) };
+    const { points } = req.body;
+    const newLog = { player_id: req.user.id, points: xss(points) };
 
     for (const [key, value] of Object.entries(newLog))
       if (value == null)
