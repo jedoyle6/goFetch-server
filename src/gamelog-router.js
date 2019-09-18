@@ -14,6 +14,8 @@ gamelogRouter
     const { points } = req.body;
     const newLog = { player_id: req.user.id, points: xss(points) };
 
+    
+
     for (const [key, value] of Object.entries(newLog))
       if (value == null)
         return res.status(400).json({
