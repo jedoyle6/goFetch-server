@@ -23,6 +23,20 @@ profileRouter
     
   });
 
+profileRouter
+  .route('/test')
+  .get(authenticateTokenJwt, jsonBodyParser, (req, res, next) => {
+    const user =  req.user;
+
+    profileService.getProfileDataTest(req.app.get('db'), user.user_name)
+      .then(data => {
+        return res.status(200).json(data);
+
+      })
+      .catch(next);
+
+    
+  });
 
 
 module.exports = profileRouter;
