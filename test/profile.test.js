@@ -6,7 +6,7 @@ const helpers = require('./test-helpers');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 
-describe.only('Profile Endpoints', function() {
+describe('Profile Endpoints', function() {
   let db;
 
   const { testTeams, testUsers, testGames } = helpers.makeTestEntries();
