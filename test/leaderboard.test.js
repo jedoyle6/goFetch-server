@@ -1,5 +1,5 @@
 'use strict';
-/* global supertest */
+/* global supertest expect */
 const knex = require('knex');
 const app = require('../src/app');
 const helpers = require('./test-helpers');
