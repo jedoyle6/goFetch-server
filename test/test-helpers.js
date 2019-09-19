@@ -44,17 +44,14 @@ function makeUsersArray(teams) {
 function makeGamesArray(users) {
   return [
     {
-      game_id: 1,
       player_id: users[0].id,
       points: 5,
     },
     {
-      game_id: 2,
       player_id: users[1].id,
       points: 10,
     },
     {
-      game_id: 3,
       player_id: users[2].id,
       points: 15,
     },

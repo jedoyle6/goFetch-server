@@ -10,9 +10,9 @@ const jsonBodyParser = express.json();
 gamelogRouter
   .route('/')
   .post(authenticateTokenJwt, jsonBodyParser, (req, res, next) => {
-    if (!req.body) return res.status(400).json({error: 'Missing request body'});
 
     const { points } = req.body;
+    if (!points) return res.status(400).json({error: 'Missing required entry in request body'});
     const newLog = { player_id: req.user.id, points: xss(points) };
 
     
