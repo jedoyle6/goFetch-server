@@ -14,9 +14,9 @@ VALUES
 
 INSERT INTO gofetch_users (team_id, user_name, password)
 VALUES
-  (1, 'Terry', 'password1'),
-  (2, 'Billy', 'password2'),
-  (3, 'Penelope', 'password3');
+  (1, 'Terry', '$2a$12$WoUMtmpFZoslfBNfF4o9EuaB5P11vkwigCH7CiWGWKltPvm2xQL9G'),
+  (2, 'Billy', '$2a$12$WoUMtmpFZoslfBNfF4o9EuaB5P11vkwigCH7CiWGWKltPvm2xQL9G'),
+  (3, 'Penelope', '$2a$12$WoUMtmpFZoslfBNfF4o9EuaB5P11vkwigCH7CiWGWKltPvm2xQL9G');
 
 INSERT INTO gofetch_gamelog (player_id, points)
 VALUES
