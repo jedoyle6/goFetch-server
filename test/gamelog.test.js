@@ -6,7 +6,7 @@ const helpers = require('./test-helpers');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 
-describe.only('Gamelog Endpoints', function() {
+describe('Gamelog Endpoints', function() {
   let db;
 
   const { testTeams, testUsers, testGames } = helpers.makeTestEntries();
@@ -41,7 +41,7 @@ describe.only('Gamelog Endpoints', function() {
     it('Responds with status 400 when given invalid data', () => {
       return supertest(app)
         .post('/gamelog')
-        .set('Authorization', helpers.makeAuthHeader(testUsers[0]))
+        .set('Authorization', helpers.makeAuthHeader(testUser))
         .send({nonsense: 'hbgs0ve4ytuiv'})
         .expect(400);
     });
@@ -49,7 +49,7 @@ describe.only('Gamelog Endpoints', function() {
     it('Responds with status 201 and a new game entry when given valid data', () => {
       return supertest(app)
         .post('/gamelog')
-        .set('Authorization', helpers.makeAuthHeader(testUsers[0]))
+        .set('Authorization', helpers.makeAuthHeader(testUser))
         .send({points: 5})
         .expect(201);
     });

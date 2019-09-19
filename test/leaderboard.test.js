@@ -1,4 +1,5 @@
 'use strict';
+/* global supertest */
 const knex = require('knex');
 const app = require('../src/app');
 const helpers = require('./test-helpers');
@@ -25,12 +26,39 @@ describe('Leaderboard Endpoints', function() {
 
   afterEach('cleanup', () => helpers.cleanTables(db));
 
-  describe('METHOD and PATH', () => {
+  describe('GET /leaderboard/player', () => {
     beforeEach('insert test data', () =>
       helpers.seedAllTables(db, testTeams, testUsers, testGames)
     );
 
-    it('Does the specified thing', () => {});
+    it('Responds with status 200 and an array of score objects', () => {
+      return supertest(app)
+        .get('/leaderboard/player')
+        .expect(200)
+        .expect(res => {
+          expect(res.body).to.be.an('array');
+          expect(res.body[0]).to.be.an('object');
+          expect(res.body[0]).to.have.keys('user_name', 'sum');
+        });
+    });
+
+  });
+
+  describe('GET /leaderboard/team', () => {
+    beforeEach('insert test data', () =>
+      helpers.seedAllTables(db, testTeams, testUsers, testGames)
+    );
+
+    it('Responds with status 200 and an array of score objects', () => {
+      return supertest(app)
+        .get('/leaderboard/team')
+        .expect(200)
+        .expect(res => {
+          expect(res.body).to.be.an('array');
+          expect(res.body[0]).to.be.an('object');
+          expect(res.body[0]).to.have.keys('team_name', 'sum');
+        });
+    });
 
   });
 });
