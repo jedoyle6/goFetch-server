@@ -1,11 +1,12 @@
 'use strict';
+/*global supertest expect*/
 const knex = require('knex');
 const app = require('../src/app');
 const helpers = require('./test-helpers');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 
-describe('Profile Endpoints', function() {
+describe.only('Profile Endpoints', function() {
   let db;
 
   const { testTeams, testUsers, testGames } = helpers.makeTestEntries();
@@ -25,12 +26,27 @@ describe('Profile Endpoints', function() {
 
   afterEach('cleanup', () => helpers.cleanTables(db));
 
-  describe('METHOD and PATH', () => {
+  describe('GET /profile', () => {
     beforeEach('insert test data', () =>
       helpers.seedAllTables(db, testTeams, testUsers, testGames)
     );
 
-    it('Does the specified thing', () => {});
+    it('Returns status 401 Unauthorized if missing an authorization header', () => {
+      return supertest(app)
+        .get('/profile')
+        .expect(401);
+    });
+
+    it('Returns status 200 and profile data object when given a valid authorization header', () => {
+      return supertest(app)
+        .get('/profile')
+        .set('Authorization', helpers.makeAuthHeader(testUser))
+        .expect(200)
+        .expect(res => {
+          expect(res.body).to.be.an('object');
+          expect(res.body).to.have.keys('user_name', 'team_id', 'rank', 'totalPlayers', 'total_points');
+        });
+    });
 
   });
 });
