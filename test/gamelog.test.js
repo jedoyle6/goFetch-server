@@ -1,11 +1,12 @@
 'use strict';
+/* global supertest */
 const knex = require('knex');
 const app = require('../src/app');
 const helpers = require('./test-helpers');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 
-describe('Endpoints', function() {
+describe.only('Gamelog Endpoints', function() {
   let db;
 
   const { testTeams, testUsers, testGames } = helpers.makeTestEntries();
@@ -25,12 +26,33 @@ describe('Endpoints', function() {
 
   afterEach('cleanup', () => helpers.cleanTables(db));
 
-  describe('METHOD and PATH', () => {
+  describe('POST /gamelog', () => {
     beforeEach('insert test data', () =>
       helpers.seedAllTables(db, testTeams, testUsers, testGames)
     );
 
-    it('Does the specified thing', () => {});
+    it('Responds with status 401 when missing an auth header', () => {
+      return supertest(app)
+        .post('/gamelog')
+        .send({points: 5})
+        .expect(401);
+    });
+
+    it('Responds with status 400 when given invalid data', () => {
+      return supertest(app)
+        .post('/gamelog')
+        .set('Authorization', helpers.makeAuthHeader(testUsers[0]))
+        .send({nonsense: 'hbgs0ve4ytuiv'})
+        .expect(400);
+    });
+
+    it('Responds with status 201 and a new game entry when given valid data', () => {
+      return supertest(app)
+        .post('/gamelog')
+        .set('Authorization', helpers.makeAuthHeader(testUsers[0]))
+        .send({points: 5})
+        .expect(201);
+    });
 
   });
 });

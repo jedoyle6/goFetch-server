@@ -1,12 +1,12 @@
-'use strict';
-/*global supertest */
+// 'use strict';
+// /*global supertest */
 
-const app = require('../src/app');
+// const app = require('../src/app');
 
-describe('App', () => {
-  it('GET / responds with status 200', () => {
-    return supertest(app)
-      .get('/')
-      .expect(200);
-  });
-});
+// describe('App', () => {
+//   it('GET / responds with status 200', () => {
+//     return supertest(app)
+//       .get('/')
+//       .expect(200);
+//   });
+// });

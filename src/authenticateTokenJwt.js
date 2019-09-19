@@ -4,6 +4,7 @@ const AuthService = require('./auth-service');
 function authenticateTokenJwt(req, res, next) {
 
   const authToken = req.get('Authorization') || '';
+  
   let bearerToken;
 
   if (!authToken.toLowerCase().startsWith('bearer')) {

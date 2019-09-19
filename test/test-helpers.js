@@ -1,5 +1,5 @@
 const bcrypt = require('bcryptjs');
-const AuthService = require('../src/auth/auth-service');
+const AuthService = require('../src/auth-service');
 
 function makeTeamsArray() {
   return [
@@ -131,14 +131,14 @@ function seedUsers(db, users) {
 }
 
 function seedGames(db, games) {
-  return db.into('gofetch_games').insert(games)
-    .then(() =>
-      // update the auto sequence to stay in sync
-      db.raw(
-        `SELECT setval('gofetch_games_id_seq', ?)`,
-        [games[games.length - 1].game_id],
-      )
-    )
+  return db.into('gofetch_gamelog').insert(games)
+    // .then(() =>
+    //   // update the auto sequence to stay in sync
+    //   db.raw(
+    //     `SELECT setval('gofetch_gamelog_id_seq', ?)`,
+    //     [games[games.length - 1].game_id],
+    //   )
+    // )
 }
 
  function makeAuthHeader(user) {
