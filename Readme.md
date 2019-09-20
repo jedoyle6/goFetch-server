@@ -1,17 +1,13 @@
-# Express Boilerplate!
+# Go Fetch! - Server Side
+This web server is intended for use with its client-side application, which allows a user to play a card game, Go Fish, against an AI opponent. This server supports player profile creation and login, as well as updating and fetching leaderboard scores. <br>
+You can see the entire project live [here](https://go-fetch.jessicaedoyle.now.sh/). <br>
 
-This is a boilerplate project used for starting new projects!
+This is only the server-side code, written with Javascript, Express, Node, and Postgresql.<br>
 
-## Set up
+The clinet-side code can be found [here](https://github.com/jedoyle6/goFetch-client), and was written using React, Javascript, HTML, and CSS. <br>
 
-Complete the following steps to start a new project (NEW-PROJECT-NAME):
 
-1. Clone this repository to your local machine `git clone BOILERPLATE-URL NEW-PROJECTS-NAME`
-2. `cd` into the cloned repository
-3. Make a fresh start of the git history for this project with `rm -rf .git && git init`
-4. Install the node dependencies `npm install`
-5. Move the example Environment file to `.env` that will be ignored by git and read by the express server `mv example.env .env`
-6. Edit the contents of the `package.json` to use NEW-PROJECT-NAME instead of `"name": "express-boilerplate",`
+Additional Information <br>
 
 ## Scripts
 
