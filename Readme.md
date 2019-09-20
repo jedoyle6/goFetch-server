@@ -4,7 +4,7 @@ You can see the entire project live [here](https://go-fetch.jessicaedoyle.now.sh
 
 This is only the server-side code, written with Javascript, Express, Node, and Postgresql.<br>
 
-The clinet-side code can be found [here](https://github.com/jedoyle6/goFetch-client), and was written using React, Javascript, HTML, and CSS. <br>
+The client-side code can be found [here](https://github.com/jedoyle6/goFetch-client), and was written using React, Javascript, HTML, and CSS. <br>
 
 
 Additional Information <br>
