@@ -6,17 +6,38 @@ This is only the server-side code, written with Javascript, Express, Node, and P
 
 The client-side code can be found [here](https://github.com/jedoyle6/goFetch-client), and was written using React, Javascript, HTML, and CSS. <br>
 
+## Endpoints
 
-Additional Information <br>
+### /signup
 
-## Scripts
+1. `POST /signup`
 
-Start the application `npm start`
+Verifies input and creates a new account if valid.
 
-Start nodemon for the application `npm run dev`
+### /login
 
-Run the tests `npm test`
+1. `POST /login`
 
-## Deploying
+Verifies credentials and returns a JSON Web Token if valid.
 
-When your new project is ready for deployment, add a new Heroku application with `heroku create`. This will make a new git remote called "heroku" and you can then `npm run deploy` which will push to this remote's master branch.
+### /profile
+
+1. `GET /profile`
+
+Returns information related to the user's profile.
+
+### /leaderboard
+
+1. `GET /leaderboard/team`
+
+Returns information about accumulated points, grouped by player teams.
+
+1. `GET /leaderboard/player`
+
+Returns information about accumulated points, grouped by individual player.
+
+### /gamelog
+
+1. `POST /gamelog`
+
+Adds a record of a won game, logging the number of points earned by the player to the database.
