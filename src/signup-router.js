@@ -38,7 +38,9 @@ signupRouter
             };
             return AuthService.insertUser(req.app.get('db'), newUser)
               .then(user => {
-                res.status(201).json(AuthService.serializeUser(user));
+                const sub = user.user_name;
+                const payload = { user_id: user.id};
+                res.status(201).send({authToken: AuthService.createJWT(sub, payload)});
               });
           });       
         
